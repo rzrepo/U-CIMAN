@@ -1,0 +1,27 @@
+clc;clear;
+x = [0.01, 0.35, 0.62, 0.81];
+% x = categorical({'0.0033', '0.091', '0.13', '0.1491'});
+y = [0.0033, 0.091, 0.12, 0.1491];
+figure('rend','painters','pos',[100 100 600 300]);
+set(0,'defaultAxesFontName', 'Arial');
+stem(x,y)
+grid on;
+axis([0 1 0 0.2]);
+xlabel('RB usage');
+ylabel('Measurement error rate');
+ax = gca;
+outerpos = ax.OuterPosition;
+ti = ax.TightInset;
+ti = ti*1.5;
+left = outerpos(1) + ti(1);
+bottom = outerpos(2) + ti(2);
+ax_width = outerpos(3) - ti(1) - ti(3);
+ax_height = outerpos(4) - ti(2) - ti(4);
+ax.Position = [left bottom ax_width ax_height];
+fig = gcf;
+fig.PaperPositionMode = 'auto';
+fig_pos = fig.PaperPosition;
+fig.PaperSize = [fig_pos(3) fig_pos(4)];
+set(findall(gcf,'-property','FontSize'),'FontSize',14);
+print(fig,'validation','-dpdf');
+savefig('validation');
