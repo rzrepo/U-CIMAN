@@ -1,0 +1,6 @@
+#!/bin/bash
+cd build/lib/examples
+until ./rz_dl_decode_cc -f 739e6; do
+    echo Abnormally stopped, restarting in 10 second
+    sleep 10 
+done
